@@ -5,6 +5,10 @@
     --dark: #ac1e0b;
 }
 
+.bg-maroon{
+    background-color: #ac1e0b;
+}
+
 .ff-secondary {
     font-family: 'Pacifico', cursive;
 }
@@ -159,7 +163,7 @@
 }
 
 .bg-red{
-    background:#ac1e0b;;
+    background:#ac1e0b;
 }
 
 .hero-header img {

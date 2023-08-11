@@ -49,3 +49,7 @@ Route::post('/login', [AuthController::class,'login']);
 Route::post('/logout', [AuthController::class,'logout']);
 // Route::get('/login', 'AuthContro')->name('login');
 
+Route::get('/pesan', function () {
+    return view('frontend.pilih_outlet');
+});
+
