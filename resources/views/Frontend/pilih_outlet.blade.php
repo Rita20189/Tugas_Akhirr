@@ -59,12 +59,13 @@
     }
 
     /* BUTTON BIKIN SENDIRI */
-    .btn-outlet{
+    .btn-outlet {
       background-color: white;
       color: #ac1e0b;
-      font-weight:bold;
+      font-weight: bold;
     }
-    .btn-outlet:hover{
+
+    .btn-outlet:hover {
       background-color: #ac1e0b;
       color: white;
     }
@@ -102,62 +103,16 @@
       <div class="container text-center my-5 pt-5 pb-4">
         <h1 class="display-3 mb-5 animated slideInDown text-white">- Pilih Outlet -</h1>
         <div class="owl-carousel text-center">
+          @foreach($outlet as $outlet)
           <div class="border rounded-2 p-4 bg-warning ">
             <div class="align-items-center mx-auto text-center">
-              <img class="text-center" src="img/satu.png">
+              <img class="text-center" src="{{ asset('images/'.$outlet->logo) }}">
               <div class="ps-3 text-center">
-                <a href="#" class="btn btn-outlet fw-bold rounded-3 px-4 mt-4">Pesan</a>
+                <a href="/pilih_menu/{{$outlet->id}}" class="btn btn-outlet fw-bold rounded-3 px-4 mt-4">Pesan</a>
               </div>
             </div>
           </div>
-          <div class="border rounded-2 p-4 bg-warning">
-            <div class="align-items-center mx-auto text-center">
-              <img class="text-center" src="img/dua.png">
-              <div class="ps-3 text-center">
-                <a href="#" class="btn btn-outlet fw-bold rounded-3 px-4 mt-4">Pesan</a>
-              </div>
-            </div>
-          </div>
-          <div class="border rounded-2 p-4 bg-warning">
-            <div class="align-items-center mx-auto text-center">
-              <img class="text-center" src="img/tiga.png">
-              <div class="ps-3 text-center">
-                <a href="#" class="btn btn-outlet fw-bold rounded-3 px-4 mt-4">Pesan</a>
-              </div>
-            </div>
-          </div>
-          <div class="border rounded-2 p-4 bg-warning">
-            <div class="align-items-center mx-auto text-center">
-              <img class="text-center" src="img/empat.png">
-              <div class="ps-3 text-center">
-                <a href="#" class="btn btn-outlet fw-bold rounded-3 px-4 mt-4">Pesan</a>
-              </div>
-            </div>
-          </div>
-          <div class="border rounded-2 p-4 bg-warning">
-            <div class="align-items-center mx-auto text-center">
-              <img class="text-center" src="img/lima.png">
-              <div class="ps-3 text-center">
-                <a href="#" class="btn btn-outlet fw-bold rounded-3 px-4 mt-4">Pesan</a>
-              </div>
-            </div>
-          </div>
-          <div class="border rounded-2 p-4 bg-warning">
-            <div class="align-items-center mx-auto text-center">
-              <img class="text-center" src="img/enam.png">
-              <div class="ps-3 text-center">
-                <a href="#" class="btn btn-outlet fw-bold rounded-3 px-4 mt-4">Pesan</a>
-              </div>
-            </div>
-          </div>
-          <div class="border rounded-2 p-4 bg-warning">
-            <div class="align-items-center mx-auto text-center">
-              <img class="text-center" src="img/tujuh.png">
-              <div class="ps-3 text-center">
-                <a href="#" class="btn btn-outlet fw-bold rounded-3 px-4 mt-4">Pesan</a>
-              </div>
-            </div>
-          </div>
+          @endforeach
         </div>
       </div>
     </div>

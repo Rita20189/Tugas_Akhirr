@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Outlet;
 use Illuminate\Http\Request;
 
 class OutletController extends Controller
@@ -12,7 +13,12 @@ class OutletController extends Controller
      */
     public function index()
     {
-        //
+        return view(
+            'Backend.data-master.data-outlet.index',
+            [
+                'outlets' => Outlet::get()
+            ]
+        );
     }
 
     /**
@@ -20,7 +26,7 @@ class OutletController extends Controller
      */
     public function create()
     {
-        //
+        return view('Backend.data-master.data-outlet.create');
     }
 
     /**
@@ -28,7 +34,30 @@ class OutletController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama_outlet' => 'required',
+            'pemilik_outlet' => 'required',
+            'status' => 'required',
+            'jam_buka' => 'required',
+            'jam_tutup' => 'required',
+            'logo' => 'required|image', // Validasi gambar
+        ]);
+
+        if ($request->hasFile('logo')) {
+            $image = $request->file('logo');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images'), $imageName);
+        }
+
+        $outlet = new Outlet();
+        $outlet->nama_outlet = $request->input('nama_outlet');
+        $outlet->pemilik_outlet = $request->input('pemilik_outlet');
+        $outlet->status = $request->input('status');
+        $outlet->jam_buka = $request->input('jam_buka');
+        $outlet->jam_tutup = $request->input('jam_tutup');
+        $outlet->logo = $imageName; // Simpan nama gambar ke dalam tabel
+        $outlet->save();
+        return redirect('data-outlet')->with('success', 'Outlet berhasil ditambahkan.');
     }
 
     /**
