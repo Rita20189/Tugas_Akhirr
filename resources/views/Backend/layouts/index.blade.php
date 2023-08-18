@@ -26,7 +26,6 @@
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
     @include('backend.layouts.header')
-    partial
     <div class="container-fluid page-body-wrapper">
       <!-- partial:partials/_settings-panel.html -->
       <div class="theme-setting-wrapper">

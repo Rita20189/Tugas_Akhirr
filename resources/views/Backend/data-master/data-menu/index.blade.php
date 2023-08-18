@@ -7,10 +7,10 @@
                 <div class="row mt-5">
                     <div class="col-6  mb-4 mb-xl-0">
                         <h3 class="font-weight-bold">Data Master</h3>
-                        <h6 class="font-weight-normal mb-0">Data Outlet</h6>
+                        <h6 class="font-weight-normal mb-0">Data Menu</h6>
                     </div>
                     <div class="col-6 d-grid gap-2 d-md-flex justify-content-md-end">
-                        <a href="/data-outlet/create">
+                        <a href="/data-menu/create">
                             <button type="button" class="btn btn-inverse-info btn-rounded btn-sm"> Tambah Data</button>
                         </a>
                     </div>
@@ -39,38 +39,34 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama Outlet</th>
-                            <th>Pemilik Outlet</th>
+                            <th>Nama Menu</th>
+                            <th>Harga</th>
                             <th>Status</th>
-                            <th>Jam Buka</th>
-                            <th>Jam Tutup</th>
-                            <th>Logo</th>
+                            <th>Gambar Menu</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($outlets as $outlet)
+                        @forelse($menus as $menu)
                         <tr>
-                            <td>{{$loop->iteration}}</td>
-                            <td>{{$outlet->nama_outlet}}</td>
-                            <td>{{$outlet->pemilik_outlet}}</td>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $menu->nama_menu }}</td>
+                            <td>Rp {{ number_format($menu->harga, 0, ',', '.')}}</td>
                             <td>
-                                @if($outlet->status === 0)
-                                <div class="badge badge-danger">TUTUP</div>
-                                @elseif($outlet->status === 1)
-                                <div class="badge badge-success">BUKA</div>
+                                @if($menu->status === 0)
+                                <div class="badge badge-danger">Tersedia</div>
+                                @elseif($menu->status === 1)
+                                <div class="badge badge-success">Tidak Tersedia</div>
                                 @else
                                 <p>Data Tidak Ada</p>
                                 @endif
                             </td>
-                            <td>{{ \Carbon\Carbon::parse($outlet->jam_buka)->format('H:i') }} WIB</td>
-                            <td>{{ \Carbon\Carbon::parse($outlet->jam_tutup)->format('H:i') }} WIB</td>
                             <td>
-                                <img src="{{ asset('images/'.$outlet->logo) }}" alt="">
+                                <img src="{{ asset('images/'.$menu->gambar_menu) }}" alt="">
                             </td>
                             <td>
-                                <a href="data-outlet/{{$outlet->id}}/edit" class="btn btn-sm btn-primary rounded">Edit</a>
-                                <form action="data-outlet/{{$outlet->id}}" method="POST" style="display: inline;">
+                                <a href="data-menu/{{$menu->id}}/edit" class="btn btn-sm btn-primary rounded">Edit</a>
+                                <form action="data-menu/{{$menu->id}}" method="POST" style="display: inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger rounded" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
@@ -78,11 +74,13 @@
                             </td>
                         </tr>
                         @empty
-                        <td colspan="8">-- Data tidak ada --</td>
+                        <tr>
+                            <td colspan="5">-- Data tidak ada --</td>
+                        </tr>
                         @endforelse
                     </tbody>
                 </table>
             </div>
         </div>
-    </div>
-@endsection
+        </div>
+    @endsection

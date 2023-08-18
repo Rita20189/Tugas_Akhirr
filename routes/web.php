@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\Backend\AuthController;
 use App\Http\Controllers\Backend\BackendController;
+use App\Http\Controllers\Backend\MenuController;
 use App\Http\Controllers\Backend\OutletController;
+use App\Http\Controllers\Backend\KategoriController;
+use App\Http\Controllers\Backend\PenggunaController;
 use App\Http\Controllers\Frontend\FrontendController;
 use Illuminate\Support\Facades\Route;
 
@@ -53,4 +56,7 @@ Route::post('/logout', [AuthController::class,'logout']);
 Route::get('/pesan',[FrontendController::class,'pilih_outlet'])->middleware('auth');
 
 
-Route::resource('/data-outlet', OutletController::class)->middleware('auth');
+Route::resource('/data-outlet',OutletController::class)->middleware('auth');
+Route::resource('/data-kategori', KategoriController::class)->middleware('auth');
+Route::resource('/data-menu', MenuController::class)->middleware('auth');
+Route::resource('/data-pengguna', PenggunaController::class)->middleware('auth');
