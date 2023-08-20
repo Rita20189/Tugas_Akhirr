@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Kategori;
 use App\Models\Menu;
+use App\Models\Outlet;
 use Illuminate\Http\Request;
 
 class MenuController extends Controller
@@ -26,7 +28,10 @@ class MenuController extends Controller
      */
     public function create()
     {
-        return view('Backend.data-master.data-menu.create');
+        return view('Backend.data-master.data-menu.create',[
+            'kategoris' => Kategori::get(),
+            'outlets' => Outlet::get(),
+        ]);
     }
 
     /**
@@ -36,6 +41,8 @@ class MenuController extends Controller
     {
         $request->validate([
             'nama_menu' => 'required',
+            'kategori' => 'required',
+            'outlet' => 'required',
             'harga' => 'required',
             'status' => 'required',
             'gambar_menu' => 'required|image', // Validasi gambar
@@ -49,6 +56,8 @@ class MenuController extends Controller
 
         $menu = new Menu();
         $menu->nama_menu  = $request->input('nama_menu');
+        $menu->kategori_id = $request->input('kategori');
+        $menu->outlet_id = $request->input('outlet');
         $menu->harga = $request->input('harga');
         $menu->status = $request->input('status');
         $menu->gambar_menu = $imageName; // Simpan nama gambar ke dalam tabel
@@ -70,7 +79,11 @@ class MenuController extends Controller
     public function edit(string $id)
     {
         $menu = Menu::find($id);
-        return view('Backend.data-master.data-menu.edit', ['menu' => $menu]);
+        return view('Backend.data-master.data-menu.edit', [
+            'menu' => $menu,
+            'kategoris' => Kategori::get(),
+            'outlets' => Outlet::get()
+        ]);
     }
 
     /**
@@ -81,6 +94,8 @@ class MenuController extends Controller
         $menu = Menu::findOrFail($id);
         $request->validate([
             'nama_menu' => 'required',
+            'kategori' => 'required',
+            'outlet' => 'required',
             'harga' => 'required',
             'status' => 'required',
             'gambar_menu' => 'required|image',
@@ -94,6 +109,8 @@ class MenuController extends Controller
 
         $menu->update([
         'nama_menu' => $request->input('nama_menu'),
+        'kategori_id' => $request->input('kategori'),
+        'outlet_id' => $request->input('outlet'),
         'harga' => $request->input('harga'),
         'status' => $request->input('status'),
         'gambar_menu'=> $imageName,

@@ -7,11 +7,11 @@
                 <div class="row mt-5">
                     <div class="col-6  mb-4 mb-xl-0">
                         <h3 class="font-weight-bold">Data Master</h3>
-                        <h6 class="font-weight-normal mb-0">Data Menu</h6>
+                        <h6 class="font-weight-normal mb-0">Data Meja</h6>
                     </div>
                     <div class="col-6 d-grid gap-2 d-md-flex justify-content-md-end">
-                        <a href="/data-menu/create">
-                            <button type="button" class="btn btn-inverse-info btn-rounded btn-sm"> Tambah Data</button>
+                        <a href="/data-meja/create">
+                            <button type="button" class="btn btn-inverse-info btn-rounded btn-sm">Tambah Data</button>
                         </a>
                     </div>
                 </div>
@@ -39,36 +39,18 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama Menu</th>
-                            <th>Kategori</th>
-                            <th>Harga</th>
-                            <th>Status</th>
-                            <th>Gambar Menu</th>
+                            <th>Nomor Meja</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($menus as $menu)
+                        @forelse($mejas as $meja)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $menu->nama_menu }}</td>
-                            <td>{{ $menu->kategori->nama_kategori }}</td>
-                            <td>Rp {{ number_format($menu->harga, 0, ',', '.')}}</td>
+                            <td>{{ $meja->nomor_meja }}</td>
                             <td>
-                                @if($menu->status === 1)
-                                <div class="badge badge-success">Tersedia</div>
-                                @elseif($menu->status === 0)
-                                <div class="badge badge-danger">Tidak Tersedia</div>
-                                @else
-                                <p>Data Tidak Ada</p>
-                                @endif
-                            </td>
-                            <td>
-                                <img src="{{ asset('images/'.$menu->gambar_menu) }}" alt="">
-                            </td>
-                            <td>
-                                <a href="data-menu/{{$menu->id}}/edit" class="btn btn-sm btn-primary rounded">Edit</a>
-                                <form action="data-menu/{{$menu->id}}" method="POST" style="display: inline;">
+                                <a href="data-meja/{{$meja->id}}/edit" class="btn btn-sm btn-primary rounded">Edit</a>
+                                <form action="data-meja/{{$meja->id}}" method="POST" style="display: inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger rounded" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>

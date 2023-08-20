@@ -70,7 +70,8 @@ class PenggunaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $pengguna = Pengguna::find($id);
+        return view('Backend.data-master.data-pengguna.edit', ['pengguna' => $pengguna]);
     }
 
     /**
@@ -103,6 +104,8 @@ class PenggunaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = Pengguna::find($id);
+        $data->delete();
+        return redirect()->back()->with('success', 'Pengguna berhasil dihapus.');
     }
 }

@@ -2,11 +2,28 @@
 <div class="container-fluid bg-red text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
     <div class="container py-5">
         <div class="row g-5">
-            <div class="col-lg-12">
-                <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contact</h4>
-                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Jl. Dr. Moh. Hatta No.15, Kapala Koto, Kec. Pauh, <br> <i class="fa me-4"></i>Kota Padang, Sumatera Barat 25176 </span></p>
-                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+62 811-663-113</p>
-                <p class="mb-2"><i class="fa-solid fa-envelope me-3"></i>info@example.com</p>
+            <div class="col-lg-3 col-md-6">
+                <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Jam Buka</h4>
+                <h5 class="text-light fw-normal">Senin - Kamis</h5>
+                <p>11.00 AM - 23.00 PM</p>
+                <h5 class="text-light fw-normal">Jumat</h5>
+                <p>13.30 AM - 23.00 PM</p>
+                <h5 class="text-light fw-normal">Sabtu - Minggu</h5>
+                <p>11.00 AM - 23.00 PM</p>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Kontak</h4>
+                <div class="d-flex justify-content-between mb-2">
+                    <div>
+                        <i class="fa fa-map-marker-alt me-3"></i>
+                    </div>
+                    <div>
+                        Jl. Dr. Moh. Hatta No.15,</br>Kapala Koto, Kec. Pauh,
+                        <span>Kota Padang, Sumatera Barat 25176
+                    </div>
+                </div>
+                <p class="mb-2"><i class="fa fa-phone-alt me-2"></i>+62 811-663-113</p>
+                <p class="mb-4"><i class="fa-brands fa-instagram me-2"></i>alvanza_foodcourt2015</p>
             </div>
         </div>
     </div>

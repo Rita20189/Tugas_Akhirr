@@ -100,15 +100,12 @@
       </div>
     </nav>
     <div class="container-xxl py-5 hero-nav">
-      <div class="container text-center my-5 pt-5 pb-4">
-        <h1 class="display-3 mb-5 animated slideInDown text-white">- Pilih Outlet -</h1>
-        <div class="owl-carousel text-center">
-          @foreach($outlet as $outlet)
+          @foreach($menu as $menu)
           <div class="border rounded-2 p-4 bg-warning ">
             <div class="align-items-center mx-auto text-center">
-              <img class="text-center" src="{{ asset('images/'.$outlet->logo) }}">
+              <img class="text-center" src="{{ asset('images/'.$menu->logo) }}">
               <div class="ps-3 text-center">
-                <a href="/pilih_menu/{{$outlet->id}}" class="btn btn-outlet fw-bold rounded-3 px-4 mt-4">Pesan</a>
+                <a href="/pilih_menu/{{$menu->id}}" class="btn btn-outlet fw-bold rounded-3 px-4 mt-4">Pesan</a>
               </div>
             </div>
           </div>

@@ -7,10 +7,10 @@
                 <div class="row mt-5">
                     <div class="col-6  mb-4 mb-xl-0">
                         <h3 class="font-weight-bold">Data Master</h3>
-                        <h6 class="font-weight-normal mb-0">Data Menu</h6>
+                        <h6 class="font-weight-normal mb-0">Data Pesanan</h6>
                     </div>
                     <div class="col-6 d-grid gap-2 d-md-flex justify-content-md-end">
-                        <a href="/data-menu/create">
+                        <a href="/data-pesanan/create">
                             <button type="button" class="btn btn-inverse-info btn-rounded btn-sm"> Tambah Data</button>
                         </a>
                     </div>
@@ -39,11 +39,10 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama Menu</th>
-                            <th>Kategori</th>
-                            <th>Harga</th>
-                            <th>Status</th>
-                            <th>Gambar Menu</th>
+                            <th>Nama Meja</th>
+                            <th>Nama</th>
+                            <th>Total Pesanan</th>
+                            <th>Total Harga</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -51,7 +50,7 @@
                         @forelse($menus as $menu)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $menu->nama_menu }}</td>
+                            <td>{{ $m->nama_menu }}</td>
                             <td>{{ $menu->kategori->nama_kategori }}</td>
                             <td>Rp {{ number_format($menu->harga, 0, ',', '.')}}</td>
                             <td>

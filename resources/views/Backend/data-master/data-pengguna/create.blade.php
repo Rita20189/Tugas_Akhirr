@@ -42,7 +42,7 @@
                                 </div>
                                 @enderror
                             </div>
-                            <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menyimpan data ini?')" class="btn btn-primary mt-1 mr-2"><i class="mdi mdi-content-save-all"></i> Tambah Data</button>
+                            <button type="submit" onclick="return confirm('Apakah Anda yakin ingin menyimpan data ini?')" class="btn btn-warning">Tambah Data</button>  
                         </form>
                     </div>
                 </div>

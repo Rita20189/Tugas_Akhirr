@@ -19,6 +19,24 @@
                 <label for="exampleInputUsername1">Nama Menu</label>
                 <input type="text" autofocus required class="form-control" name="nama_menu" placeholder="Masukan Nama Menu">
               </div>
+              <div class="form-group">
+                <label for="exampleInputUsername1">Kategori</label>
+                <select class="form-control" aria-label="Default select example" name="kategori">
+                  <option>Pilih Kategori</option>
+                  @foreach($kategoris as $kategori)
+                  <option value="{{$kategori->id}}">{{$kategori->nama_kategori}}</option>
+                  @endforeach
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputUsername1">Outlet</label>
+                <select class="form-control" aria-label="Default select example" name="outlet">
+                  <option>Pilih Outlet</option>
+                  @foreach($outlets as $outlet)
+                  <option value="{{$outlet->id}}">{{$outlet->nama_outlet}}</option>
+                  @endforeach
+                </select>
+              </div>
               <div class="mb-3">
                 <label for="harga" class="form-label">Harga</label>
                 <input type="number" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga" value="{{ old('harga') }}">

@@ -8,7 +8,7 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
                             <h3><i class="mdi mdi-library-plus"></i> Edit Data Outlet</h3>
-                            <a href="/data-outlet/edit">
+                            <a href="/data-outlet">
                                 <button type="button" class="btn btn-inverse-info btn-rounded btn-sm"><i class="ti-arrow-left mr-1"></i>Back</button>
                             </a>
                         </div>

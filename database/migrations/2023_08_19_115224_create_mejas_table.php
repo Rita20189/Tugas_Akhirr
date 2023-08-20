@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('menus', function (Blueprint $table) {
+        Schema::create('mejas', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_menu')->nullable();
-            $table->double('harga', 8,2);
-            $table->boolean('status')->nullable();
-            $table->string('gambar_menu')->nullable();
+            $table->string('nomor_meja')->unique();
             $table->timestamps();
         });
     }
@@ -26,6 +23,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('menus');
+        Schema::dropIfExists('mejas');
     }
 };
+    
