@@ -25,7 +25,7 @@
                 <select class="form-control" aria-label="Default select example" name="kategori">
                   <option>Pilih Kategori</option>
                   @foreach($kategoris as $kategori)
-                  <option value="{{$kategori->id}}" {{(old('kategori', $menu->kategori_id) == $kategori->id) ? 'selected' : ''}}>{{$kategori->nama_kategori}}</option>
+                  <option value="{{$katego  ri->id}}" {{(old('kategori', $menu->kategori_id) == $kategori->id) ? 'selected' : ''}}>{{$kategori->nama_kategori}}</option>
                   @endforeach
                 </select>
               </div>
@@ -55,7 +55,6 @@
                   <option value="0" <?php if ($menu->status == 0) echo "selected"; ?>>Tidak Tersedia</option>
                 </select>
               </div>
-
               <div class="mb-3">
                 <label for="formFileMultiple" class="form-label">Gambar Menu</label>
                 <input class="form-control" name="gambar_menu" type="file" id="formFileMultiple" placeholder="Masukan Gambar Menu ">

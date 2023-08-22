@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\item_pesanan;
+use App\Models\ItemPesanan;
+use App\Models\Meja;
+use App\Models\Pesanan;
 use Illuminate\Http\Request;
 
 class PesananController extends Controller
@@ -12,7 +16,12 @@ class PesananController extends Controller
      */
     public function index()
     {
-        //
+        return view(
+            'Backend.manajemen-pesanan.data-pesanan.index',
+            [
+                'pesanans' => Pesanan::get()
+            ]
+        );
     }
 
     /**
@@ -20,7 +29,9 @@ class PesananController extends Controller
      */
     public function create()
     {
-        //
+        return view('Backend.manajemen-pesanan.data-pesanan.create',[
+            'mejas' => Meja::get(),
+        ]);
     }
 
     /**
@@ -28,7 +39,16 @@ class PesananController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate([
+            'meja' => 'required',
+            'nama' => 'required',
+        ]);
+
+        $pesanan = new Pesanan();
+        $pesanan->meja_id  = $request->input('meja');
+        $pesanan->nama = $request->input('nama');
+        $pesanan->save();
+        return redirect('data-pesanan')->with('success', 'Pesanan berhasil ditambahkan.');
     }
 
     /**
@@ -36,7 +56,14 @@ class PesananController extends Controller
      */
     public function show(string $id)
     {
-        //
+        // $pesanan= Pesanan::findOrFail($id);
+        $ItemPesanan = ItemPesanan::where('pesanan_id', $id)->get();
+
+        // dd($itemPesanan);
+        return view ('backend.manajemen-pesanan.data-pesanan.detail', [
+            'itemPesanans' => $ItemPesanan
+        ]);
+        
     }
 
     /**
@@ -44,7 +71,11 @@ class PesananController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $pesanan = Pesanan::find($id);
+        return view('Backend.manajemen-pesanan.data-pesanan.edit', [
+            'pesanan' => $pesanan,
+            'mejas' => Meja::get(),
+        ]);
     }
 
     /**
@@ -52,7 +83,18 @@ class PesananController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $pesanan = Pesanan::findOrFail($id);
+        $request->validate([
+            'nomor_meja' => 'required',
+            'nama' => 'required',
+        ]);
+
+        $pesanan->update([
+        'nama' => $request->input('nama'),
+        'meja_id' => $request->input('nomor_meja'),
+        ]);
+
+        return redirect('data-pesanan')->with('success', 'Pesanan berhasil ditambahkan.');
     }
 
     /**
@@ -60,6 +102,19 @@ class PesananController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            // Temukan data pesanan berdasarkan ID
+            $pesanan = Pesanan::findOrFail($id);
+
+            // Hapus data pesanan itu sendiri
+            $pesanan->delete();
+
+            return redirect()->back()->with('success', 'Pesanan berhasil dihapus.');
+        } catch (\Exception $e) {
+            // Tangani jika terjadi kesalahan
+            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+        }
     }
+
+
 }

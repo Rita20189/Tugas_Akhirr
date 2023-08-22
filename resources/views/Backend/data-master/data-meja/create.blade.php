@@ -17,7 +17,7 @@
                             @csrf
                             <div class="form-group">
                                 <label for="exampleInputUsername1">Nomor Meja</label>
-                                <input type="text" autofocus required class="form-control @error('nomor_meja') is-invalid @enderror" name="nomor_meja" placeholder="Masukan Nomor Meja">
+                                <input type="number" autofocus required class="form-control @error('nomor_meja') is-invalid @enderror" name="nomor_meja" placeholder="Masukan Nomor Meja">
                                 @error('nomor_meja')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -32,4 +32,4 @@
             </div>
         </div>
     </div>
-    @endsection
+@endsection

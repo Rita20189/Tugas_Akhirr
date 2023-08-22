@@ -31,7 +31,6 @@
               <div class="form-group">
                 <label for="exampleInputUsername1">Outlet</label>
                 <select class="form-control" aria-label="Default select example" name="outlet">
-                  <option>Pilih Outlet</option>
                   @foreach($outlets as $outlet)
                   <option value="{{$outlet->id}}">{{$outlet->nama_outlet}}</option>
                   @endforeach

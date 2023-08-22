@@ -6,13 +6,13 @@
             <div class="col-md-12 grid-margin">
                 <div class="row mt-5">
                     <div class="col-6  mb-4 mb-xl-0">
-                        <h3 class="font-weight-bold">Data Master</h3>
-                        <h6 class="font-weight-normal mb-0">Data Pengguna</h6>
+                        <h3 class="font-weight-bold">Detail Pesanan</h3>
+                        <h6 class="font-weight-normal mb-0">Data Detail Pesanan</h6>
                     </div>
                     <div class="col-6 d-grid gap-2 d-md-flex justify-content-md-end">
-                        <a href="/data-pengguna/create">
+                        <!-- <a href="/data-pesanan/create">
                             <button type="button" class="btn btn-inverse-info btn-rounded btn-sm"> Tambah Data</button>
-                        </a>
+                        </a> -->
                     </div>
                 </div>
             </div>
@@ -39,34 +39,27 @@
                     <thead class="text-white">
                         <tr>
                             <th>No</th>
-                            <th>Nama</th>
-                            <th>Email</th>
-                            <th>Role</th>
-                            <th>Aksi</th>
+                            <th>Nama Menu</th>
+                            <th>Jumlah</th>
+                            <th>Jumlah Harga</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($users as $user)
+                        @forelse($itemPesanans as $pesanan )
                         <tr>
-                            <td>{{$loop->iteration}}</td>
-                            <td>{{$user->nama}}</td>
-                            <td>{{$user->email}}</td>
-                            <td>{{$user->role}}</td>
-                            <td>
-                                <a href="data-pengguna/{{$user->id}}/edit" class="btn btn-sm btn-primary rounded">Edit</a>
-                                <form action="data-pengguna/{{$user->id}}" method="POST" style="display: inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger rounded" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
-                                </form>
-                            </td>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $pesanan->menu->nama_menu}}</td>
+                            <td>{{ $pesanan->total_pesanan}}</td>
+                            <td>Rp{{ number_format($pesanan->total_harga, 0, ',', '.') }},00</td>
                         </tr>
                         @empty
-                        <td colspan="8">-- Data tidak ada --</td>
+                        <tr>
+                            <td colspan="5">--Data tidak ada--</td>
+                        </tr>
                         @endforelse
                     </tbody>
                 </table>
             </div>
         </div>
-</div>
-@endsection
+    </div>
+    @endsection

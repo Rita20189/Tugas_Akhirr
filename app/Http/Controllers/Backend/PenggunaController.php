@@ -16,7 +16,7 @@ class PenggunaController extends Controller
     public function index()
     {
         return view(
-            'Backend.data-master.data-pengguna.index',
+            'Backend.manajemen-pengguna.data-pengguna.index',
             [
                 'users' => User::get()
             ]
@@ -28,7 +28,7 @@ class PenggunaController extends Controller
      */
     public function create()
     {
-        return view('Backend.data-master.data-pengguna.create');
+        return view('Backend.manajemen-pengguna.data-pengguna.create');
     }
 
     /**
@@ -71,7 +71,7 @@ class PenggunaController extends Controller
     public function edit(string $id)
     {
         $pengguna = Pengguna::find($id);
-        return view('Backend.data-master.data-pengguna.edit', ['pengguna' => $pengguna]);
+        return view('Backend.manajemen-pengguna.data-pengguna.edit', ['pengguna' => $pengguna]);
     }
 
     /**

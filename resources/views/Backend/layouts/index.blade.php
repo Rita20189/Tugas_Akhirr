@@ -206,13 +206,17 @@
       @yield('container')
       <!-- content-wrapper ends -->
       <!-- partial:partials/_footer.html -->
-      @include('backend.layouts.footer')
       <!-- partial -->
     </div>
+    
     <!-- main-panel ends -->
   </div>
   <!-- page-body-wrapper ends -->
+
   </div>
+  @include('backend.layouts.footer')
+
+
   <!-- container-scroller -->
   <!-- plugins:js -->
   <script src="{!! asset('backend/vendors/js/vendor.bundle.base.js')!!}"></script>

@@ -9,4 +9,8 @@ class Pesanan extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    public function meja()
+    {
+        return $this->belongsTo(Meja::class, 'meja_id');
+    }
 }

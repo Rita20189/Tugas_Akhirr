@@ -9,4 +9,8 @@ class Meja extends Model
 {
     use HasFactory;
     protected $guarded=[];
+    public function pesanan()
+    {
+        return $this->hasMany(Pesanan::class);
+    }
 }
