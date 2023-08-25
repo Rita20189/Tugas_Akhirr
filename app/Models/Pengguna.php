@@ -9,4 +9,6 @@ class Pengguna extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    protected $table = 'pengguna';
+
 }

@@ -25,7 +25,7 @@
                 <select class="form-control" aria-label="Default select example" name="kategori">
                   <option>Pilih Kategori</option>
                   @foreach($kategoris as $kategori)
-                  <option value="{{$katego  ri->id}}" {{(old('kategori', $menu->kategori_id) == $kategori->id) ? 'selected' : ''}}>{{$kategori->nama_kategori}}</option>
+                  <option value="{{$kategori->id}}" {{(old('kategori', $menu->kategori_id) == $kategori->id) ? 'selected' : ''}}>{{$kategori->nama_kategori}}</option>
                   @endforeach
                 </select>
               </div>

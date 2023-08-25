@@ -35,8 +35,8 @@
                     </button>
                 </div>
                 @endif
-                <table class="table table-striped text-center bg-dark border">
-                    <thead class="text-white">
+                <table class="table table-striped text-center border">
+                    <thead class="text-white bg-dark">
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
@@ -46,7 +46,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($users as $user)
+                        @forelse($penggunas as $user)
                         <tr>
                             <td>{{$loop->iteration}}</td>
                             <td>{{$user->nama}}</td>

@@ -21,6 +21,14 @@ class MenuController extends Controller
                 'menus' => Menu::get()
             ]
         );
+
+        {
+            $menus = Menu::all(); // Mendapatkan semua data menu dari model Menu
+    
+            return view('frontend.menu.index', compact('menus'));
+        }
+
+        
     }
 
     /**

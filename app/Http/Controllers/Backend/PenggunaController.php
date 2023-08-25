@@ -18,11 +18,10 @@ class PenggunaController extends Controller
         return view(
             'Backend.manajemen-pengguna.data-pengguna.index',
             [
-                'users' => User::get()
+                'penggunas' => User::get()
             ]
         );
     }
-
     /**
      * Show the form for creating a new resource.
      */
