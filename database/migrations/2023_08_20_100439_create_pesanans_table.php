@@ -13,8 +13,11 @@ return new class extends Migration
     {
         Schema::create('pesanans', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('meja_id');
-            $table->string('nama')->nullable();
+            $table->string('nama_pelanggan')->nullable();
+            $table->unsignedBigInteger('meja_id')->nullable();
+            $table->date('tanggal_transaksi')->nullable();
+            $table->integer('total_pesanan')->nullable();
+            $table->double('total_harga', 8, 2)->nullable();
             $table->timestamps();
 
             $table->foreign('meja_id')->references('id')->on('mejas')->onDelete('cascade');

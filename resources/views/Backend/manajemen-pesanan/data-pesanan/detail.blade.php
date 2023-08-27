@@ -9,10 +9,11 @@
                         <h3 class="font-weight-bold">Detail Pesanan</h3>
                         <h6 class="font-weight-normal mb-0">Data Detail Pesanan</h6>
                     </div>
+                    
                     <div class="col-6 d-grid gap-2 d-md-flex justify-content-md-end">
-                        <!-- <a href="/data-pesanan/create">
-                            <button type="button" class="btn btn-inverse-info btn-rounded btn-sm"> Tambah Data</button>
-                        </a> -->
+                    <a href="/data-pesanan">
+                        <button type="button" class="btn btn-inverse-info btn-rounded btn-sm"><i class="ti-arrow-left mr-"></i>Back</button>
+                    </a>
                     </div>
                 </div>
             </div>
@@ -35,8 +36,8 @@
                     </button>
                 </div>
                 @endif
-                <table class="table table-striped text-center bg-dark border">
-                    <thead class="text-white">
+                <table class="table table-striped text-center border">
+                    <thead class="text-white bg-dark">
                         <tr>
                             <th>No</th>
                             <th>Nama Menu</th>

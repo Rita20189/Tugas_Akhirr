@@ -31,6 +31,20 @@
     <link href="{!! asset('css/style.css')!!}" rel="stylesheet">
     <link href="{!! asset('css/owl.carousel.css')!!}" rel="stylesheet">
     <link href="{!! asset('css/owl.carousel.min.css')!!}" rel="stylesheet">
+
+    <style>
+         /* BUTTON BIKIN SENDIRI */
+    .btn-outlet {
+      background-color: white;
+      color: #ac1e0b;
+      font-weight: bold;
+    }
+
+    .btn-outlet:hover {
+      background-color: #ac1e0b;
+      color: white;
+    }
+    </style>
 </head>
 
 <body>

@@ -90,7 +90,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto py-0 pe-4">
-          <a href="{{ url('/pesan') }}" class="nav-item nav-link custom-link">Kembali</a>
+          <a href="{{ url('/pesan') }}/{{$id_pesanan}}" class="nav-item nav-link custom-link">Kembali</a>
         </div>
       </div>
     </nav>
@@ -115,14 +115,14 @@
                           <p class="mb-2 dropdown-toggle" id="jamBukaDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-regular fa-clock me-3"></i>Jam Buka
                           </p>
-                          <div class="dropdown-menu bg-warning" aria-labelledby="jam BukaDropdown">
-                            <p class="dropdown-item">Senin 11:00 - 23:00</p>
-                            <p class="dropdown-item">Selasa 11:00 - 23:00</p>
-                            <p class="dropdown-item">Rabu 11:00 - 23:00</p>
-                            <p class="dropdown-item">Kamis 11:00 - 23:00</p>
-                            <p class="dropdown-item">Jumat 13:30 - 23:59</p>
-                            <p class="dropdown-item">Sabtu 11:00 - 23:00</p>
-                            <p class="dropdown-item">Minggu 11:00 - 23:00</p>
+                          <div class="dropdown-menu bg-warning" aria-labelledby="jamBukaDropdown">
+                            <p class="dropdown-item">Senin <span class="float-end">11:00 - 23:00</span></p>
+                            <p class="dropdown-item">Selasa <span class="float-end">11:00 - 23:00</span></p>
+                            <p class="dropdown-item">Rabu <span class="float-end">11:00 - 23:00</span></p>
+                            <p class="dropdown-item">Kamis <span class="float-end">11:00 - 23:00</span></p>
+                            <p class="dropdown-item">Jumat <span class="float-end">13:30 - 23:59</span></p>
+                            <p class="dropdown-item">Sabtu <span class="float-end">11:00 - 23:00</span></p>
+                            <p class="dropdown-item">Minggu <span class="float-end">11:00 - 23:00</span></p>
                           </div>
                         </div>
                       </div>
@@ -159,9 +159,22 @@
               <div class="align-items-center mx-auto text-center">
                 <img class="text-center" src="{{ asset('images/'.$menu->gambar_menu) }}" style="width: 100%;">
                 <div class="d-block">
-                  <label for="">{{ $menu->nama_menu }}</label>
-                  <label for="">{{ 'Rp ' . number_format($menu->harga, 0, ',', '.') }}</label>
-                  <button type="submit" class="btn btn-outlet mt-2">Tambah</button>
+                  <form action="{{url('get-menu')}}" method="POST">
+                    @csrf
+                    <label for="">{{ $menu->nama_menu }}</label>
+                    <label for="">{{ 'Rp ' . number_format($menu->harga, 0, ',', '.') }}</label>
+                    <input type="hidden" name="menu_id" value="{{$menu->id}}">
+                    <div class="input-group">
+                      <button type="button" class="btn btn-minus btn-sm input-group-text btn-minus-{{ $menu->id }}"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+                          <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM184 232H328c13.3 0 24 10.7 24 24s-10.7 24-24 24H184c-13.3 0-24-10.7-24-24s10.7-24 24-24z" />
+                        </svg></button>
+                      <input type="number" name="jumlah" class="form-control jumlah-input" value="1">
+                      <button type="button" class="btn btn-plus btn-sm input-group-text btn-plus-{{ $menu->id }}"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+                          <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z" />
+                        </svg></button>
+                    </div>
+                    <button type="submit" class="btn btn-sm btn-outlet mt-2">Tambah</button>
+                  </form>
                 </div>
               </div>
             </div>
@@ -188,6 +201,27 @@
 
   <!-- Template Javascript -->
   <script src="{{asset('js/main.js')}}"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const btnMinusArray = document.querySelectorAll('.btn-minus');
+      const btnPlusArray = document.querySelectorAll('.btn-plus');
+      const jumlahInputArray = document.querySelectorAll('.jumlah-input');
+
+      btnMinusArray.forEach((btnMinus, index) => {
+        btnMinus.addEventListener('click', function() {
+          if (jumlahInputArray[index].value > 1) {
+            jumlahInputArray[index].value = parseInt(jumlahInputArray[index].value) - 1;
+          }
+        });
+      });
+
+      btnPlusArray.forEach((btnPlus, index) => {
+        btnPlus.addEventListener('click', function() {
+          jumlahInputArray[index].value = parseInt(jumlahInputArray[index].value) + 1;
+        });
+      });
+    });
+  </script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const menuItems = document.querySelectorAll('.col-2.mb-3');

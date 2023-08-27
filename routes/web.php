@@ -56,10 +56,6 @@ Route::post('/login', [AuthController::class,'login']);
 Route::post('/login', [AuthController::class,'login']);
 Route::post('/logout', [AuthController::class,'logout']);
 // Route::get('/login', 'AuthContro')->name('login');
-
-Route::get('/pesan',[FrontendController::class,'pilih_outlet']);
-Route::get('/pilih_menu/{id}',[FrontendController::class,'pilih_menu']);
-
 Route::resource('/data-meja',MejaController::class)->middleware('auth');
 Route::resource('/item-pesanan',ItemPesananController::class)->middleware('auth');
 Route::resource('/data-pesanan',PesananController::class)->middleware('auth');
@@ -69,3 +65,12 @@ Route::resource('/data-menu', MenuController::class)->middleware('auth');
 Route::resource('/data-pengguna', PenggunaController::class)->middleware('auth');
 
 Route::get('/get-menu-data/{id}', [FrontendController::class,'getMenuData']);
+Route::get('/get-meja', [FrontendController::class,'getPesanan']);
+Route::post('/get-pesanan', [FrontendController::class,'getMejaPesanan']);
+Route::post('/get-menu', [FrontendController::class,'getDataMenu']);
+Route::get('/get-cart/{id}', [FrontendController::class,'getDataCart']);
+Route::get('/pesan/{id}',[FrontendController::class,'pilih_outlet']);
+Route::get('/pilih_menu/{id}',[FrontendController::class,'pilih_menu']);
+Route::delete('hapus-item/{id}',[FrontendController::class,'hapus_item']);
+// Route::get('/notifikasi/{id}',[FrontendController::class,'notifikasi']);
+

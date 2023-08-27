@@ -37,14 +37,17 @@
                 <div class="col-lg-6 text-center text-lg-start">
                     <h1 class="display-3 text-white animated slideInLeft">Oiy sanak..<br>jan lupo singgah!</h1>
                     <p class="text-white animated slideInLeft mb-4 pb-2">Lezatnya makanan yang menggugah selera! Nikmati pengalaman kuliner tak terlupakan bersama kami. Sajikan dengan penuh cinta dan cita rasa, setiap hidangan adalah perpaduan sempurna antara rasa dan kualitas.</p>
-                    <a href="{{ url('/pesan') }}" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Pesan Sekarang</a>
+                    <div class="text-left">
+                        <a href="{{ url('/get-meja') }}" class="btn btn-outlet btn-sm mt-3 py-3 px-3">Pesan Sekarang</a>
+                    </div>
                 </div>
-                <div class="col-lg-6 text-center text-lg-end overflow-hidden">
-                    <img class="img-fluid" src="img/hero.png" alt="">
-                </div>
+            </div>
+            <div class="col-lg-6 text-center text-lg-end overflow-hidden">
+                <!-- <img class="img-fluid" src="img/hero.png" alt=""> -->
             </div>
         </div>
     </div>
+</div>
 </div>
 <!-- Navbar & Hero End -->
 
@@ -74,18 +77,15 @@
                 }
             });
         });
-
         // Observe each section
         $("section").each(function() {
             observer.observe(this);
         });
-
         // Manually check if the top section is in view on page load
         var homeLink = navLinks.eq(0); // Select the first link (Home)
         if ($(window).scrollTop() === 0) {
             setActiveLink(homeLink);
         }
-
         // Scroll event handler to set Home tab active when scrolling back to top
         $(window).scroll(function() {
             if ($(window).scrollTop() === 0) {

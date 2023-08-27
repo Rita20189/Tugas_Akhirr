@@ -41,6 +41,8 @@
                             <th>No</th>
                             <th>Nomor Meja</th>
                             <th>Nama</th>
+                            <th>Total Pesanan</th>
+                            <th>Total Harga</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -49,15 +51,20 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>Meja {{ $pesanan->meja->nomor_meja }}</td>
-                            <td>{{ $pesanan->nama }}</td>
+                            <td>{{ $pesanan->nama_pelanggan }}</td>
+                            <td>{{ $pesanan->total_pesanan }} item</td>
+                            <td>{{ 'Rp ' . number_format($pesanan->total_harga, 0, ',', '.') }},-</td>
                             <td>
-                                <a href="data-pesanan/{{$pesanan->id}}/edit" class="btn btn-sm btn-primary rounded">Edit</a>
+                                <!-- edit -->
+                                <a href="data-pesanan/{{$pesanan->id}}/edit" class="btn btn-sm btn-primary rounded"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <!-- detail -->
+                                <a href="data-pesanan/{{$pesanan->id}}" class="btn btn-sm btn-primary rounded"><i class="fa-solid fa-eye"></i></a>
+                                <!-- delete -->
                                 <form action="data-pesanan/{{$pesanan->id}}" method="POST" style="display: inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger rounded" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
+                                    <button type="submit" class="btn btn-sm btn-danger rounded" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class="fa-solid fa-trash-can"></i></button>
                                 </form>
-                                <a href="data-pesanan/{{$pesanan->id}}" class="btn btn-sm btn-primary rounded">Detail</a>
                             </td>
                         </tr>
                         @empty

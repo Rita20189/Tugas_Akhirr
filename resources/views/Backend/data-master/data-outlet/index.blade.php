@@ -69,11 +69,13 @@
                                 <img src="{{ asset('images/'.$outlet->logo) }}" alt="">
                             </td>
                             <td>
-                                <a href="data-outlet/{{$outlet->id}}/edit" class="btn btn-sm btn-primary rounded">Edit</a>
+                                <!-- edit -->
+                                <a href="data-outlet/{{$outlet->id}}/edit" class="btn btn-sm btn-primary rounded"><i class="fa-solid fa-pen-to-square"></i></a>
+                                <!-- delete -->
                                 <form action="data-outlet/{{$outlet->id}}" method="POST" style="display: inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger rounded" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
+                                    <button type="submit" class="btn btn-sm btn-danger rounded" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><i class="fa-solid fa-trash-can"></i></button>
                                 </form>
                             </td>
                         </tr>
