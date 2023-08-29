@@ -39,8 +39,8 @@
                 @endif
                 <div class="table-container" style="overflow-x: auto;">
                     @if(Auth::user()->role === 'admin')
-                    <table class="table table-striped text-center bg-dark border">
-                        <thead class="text-white">
+                    <table class="table table-striped text-center border">
+                        <thead class="text-white bg-dark">
                             <tr>
                                 <th>No</th>
                                 <th>Nomor Meja</th>

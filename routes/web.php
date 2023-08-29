@@ -83,4 +83,6 @@ Route::get('/get-cart/{id}', [FrontendController::class, 'getDataCart']);
 Route::get('/pesan/{id}', [FrontendController::class, 'pilih_outlet']);
 Route::get('/pilih_menu/{id}', [FrontendController::class, 'pilih_menu']);
 Route::delete('hapus-item/{id}', [FrontendController::class, 'hapus_item']);
+
+Route::post('konfirmasi-pemesanan/{id}', [FrontendController::class, 'konfirmasi_pemesanan']);
 // Route::get('/notifikasi/{id}',[FrontendController::class,'notifikasi']);

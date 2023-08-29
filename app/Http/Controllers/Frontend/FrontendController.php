@@ -142,4 +142,21 @@ class FrontendController extends Controller
     $itemPesanan->delete();
     return redirect()->back();
   }
+
+  public function konfirmasi_pemesanan() {
+    $id_pesanan = session('id_pesanan');
+    // dd($id_pesanan);
+
+    $pesanan = Pesanan::where('id', $id_pesanan);
+    $pesanan->update([
+      'status' => 1
+    ]);
+
+    $itemPesanan = ItemPesanan::where('pesanan_id', $id_pesanan);
+    $itemPesanan->update([
+      'status' => 1
+    ]);
+    
+    return redirect()->back();
+  }
 }

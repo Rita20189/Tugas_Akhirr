@@ -156,6 +156,19 @@
                         </tr>
                       </tfoot>
                     </table>
+                    @if($item->status === 0)
+                    <div class="mb-3">
+                      <form action="{{url('konfirmasi-pemesanan')}}/{{$id_pesanan}}" method="POST">
+                        @csrf
+                        <button onclick="return confirm('Apakah Anda yakin ingin mengonfirmasi pesanan?')" class="btn btn-danger rounded-0" type="submit">Konfirmasi Pemesanan</button>
+                      </form>
+                    </div>
+                    @elseif($item->status === 1)
+                    <h3>Pesanan telah terkonfirmasi</h3>
+                    <div class="col-2 mx-auto row mb-3">
+                      <a href="{{url('/')}}" class="btn btn-danger rounded-0">Kembali</a>
+                    </div>
+                    @endif
                   </div>
                 </div>
               </div>
