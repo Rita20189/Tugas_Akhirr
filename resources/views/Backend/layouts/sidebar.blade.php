@@ -14,10 +14,14 @@
       </a>
       <div class="collapse" id="data-master">
         <ul class="nav flex-column sub-menu">
+          @if(Auth::user()->role === 'admin')
           <li class="nav-item"> <a class="nav-link" href="{{url('/data-meja')}}">Data Meja</a></li>
           <li class="nav-item"> <a class="nav-link" href="{{url('/data-outlet')}}">Data Outlet</a></li>
           <li class="nav-item"> <a class="nav-link" href="{{url('/data-kategori')}}">Data Kategori</a></li>
+          @endif
+          @if(Auth::user()->role === 'admin' || Auth::user()->role === 'outlet')
           <li class="nav-item"> <a class="nav-link" href="{{url('/data-menu')}}">Data Menu</a></li>
+          @endif
         </ul>
       </div>
     </li>
@@ -33,6 +37,7 @@
         </ul>
       </div>
     </li>
+    @if(Auth::user()->role === 'admin')
     <li class="nav-item">
       <a class="nav-link" data-toggle="collapse" href="#data-pengguna" aria-expanded="false" aria-controls="data-pengguna">
         <i class="icon-columns menu-icon"></i>
@@ -63,5 +68,6 @@
         <span class="menu-title">Laporan</span>
       </a>
     </li>
+    @endif
   </ul>
 </nav>

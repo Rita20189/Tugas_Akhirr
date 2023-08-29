@@ -209,7 +209,7 @@
       <!-- partial:partials/_footer.html -->
       <!-- partial -->
     </div>
-    
+
     <!-- main-panel ends -->
   </div>
   <!-- page-body-wrapper ends -->
@@ -241,4 +241,5 @@
   <script src="{!! asset('backend/js/Chart.roundedBarCharts.js')!!}"></script>
   <!-- End custom js for this page-->
 </body>
+
 </html>

@@ -79,7 +79,7 @@
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="5">-- Data tidak ada --</td>
+                            <td colspan="7">-- Data tidak ada --</td>
                         </tr>
                         @endforelse
                     </tbody>

@@ -28,14 +28,20 @@
                   @endforeach
                 </select>
               </div>
+              @if(Auth::user()->role === 'admin')
               <div class="form-group">
                 <label for="exampleInputUsername1">Outlet</label>
                 <select class="form-control" aria-label="Default select example" name="outlet">
                   @foreach($outlets as $outlet)
-                  <option value="{{$outlet->id}}">{{$outlet->nama_outlet}}</option>
+                  <option value="{{$outlet->id}}">{{$outlet->user->nama}}</option>
                   @endforeach
                 </select>
               </div>
+              @elseif(Auth::user()->role === 'outlet')
+              <div class="form-group">
+                <input type="hidden" name="outlet" value="{{Auth::user()->outlet->id}}">
+              </div>
+              @endif
               <div class="mb-3">
                 <label for="harga" class="form-label">Harga</label>
                 <input type="number" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga" value="{{ old('harga') }}">

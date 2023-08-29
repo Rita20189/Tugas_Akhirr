@@ -28,8 +28,8 @@
                                 <label for="exampleInputUsername1">Role</label>
                                 <select class="form-control" aria-label="Default select example" name="role">
                                     <option>Pilih Role</option>
-                                    <option value="super_admin">Super Admin</option>
-                                    <option value="admin">Admin</option>
+                                    <option value="owner">Owner</option>
+                                    <option value="outlet">Outlet</option>
                                     
                                 </select>
                             </div>

@@ -22,13 +22,6 @@ class UsersSeeder extends Seeder
         ]);
 
         User::create([
-            'nama'=>'Outlet',
-            'email'=>'outlet@gmail.com',
-            'role'=> 'outlet',
-            'password'=>Hash::make('outlet'),
-        ]);
-
-        User::create([
             'nama'=>'Owner',
             'email'=>'owner@gmail.com',
             'role'=> 'owner',

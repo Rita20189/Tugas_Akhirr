@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\item_pesanan;
 use App\Models\ItemPesanan;
 use App\Models\Meja;
 use App\Models\Pesanan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PesananController extends Controller
 {
@@ -16,12 +16,29 @@ class PesananController extends Controller
      */
     public function index()
     {
-        return view(
-            'Backend.manajemen-pesanan.data-pesanan.index',
-            [
-                'pesanans' => Pesanan::get()
-            ]
-        );
+        $user = Auth::user();
+
+        if ($user->role === 'admin') {
+            $pesanan = Pesanan::get();
+            return view(
+                'Backend.manajemen-pesanan.data-pesanan.index',
+                [
+                    'pesanans' => $pesanan
+                ]
+            );
+        } elseif ($user->role === 'outlet') {
+            $outletId = $user->outlet->id;
+
+            $itemPesanan = ItemPesanan::whereHas('menu', function ($query) use ($outletId) {
+                $query->where('outlet_id', $outletId);
+            })->get();
+            return view(
+                'Backend.manajemen-pesanan.data-pesanan.index',
+                [
+                    'itemPesanans' => $itemPesanan
+                ]
+            );
+        }
     }
 
     /**
@@ -29,7 +46,7 @@ class PesananController extends Controller
      */
     public function create()
     {
-        return view('Backend.manajemen-pesanan.data-pesanan.create',[
+        return view('Backend.manajemen-pesanan.data-pesanan.create', [
             'mejas' => Meja::get(),
         ]);
     }
@@ -60,10 +77,9 @@ class PesananController extends Controller
         $ItemPesanan = ItemPesanan::where('pesanan_id', $id)->get();
 
         // dd($itemPesanan);
-        return view ('backend.manajemen-pesanan.data-pesanan.detail', [
+        return view('backend.manajemen-pesanan.data-pesanan.detail', [
             'itemPesanans' => $ItemPesanan
         ]);
-        
     }
 
     /**
@@ -90,8 +106,8 @@ class PesananController extends Controller
         ]);
 
         $pesanan->update([
-        'nama' => $request->input('nama'),
-        'meja_id' => $request->input('nomor_meja'),
+            'nama' => $request->input('nama'),
+            'meja_id' => $request->input('nomor_meja'),
         ]);
 
         return redirect('data-pesanan')->with('success', 'Pesanan berhasil ditambahkan.');
@@ -115,6 +131,4 @@ class PesananController extends Controller
             return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }
     }
-
-
 }

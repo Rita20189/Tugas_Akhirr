@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('tanggal_transaksi')->nullable();
             $table->integer('total_pesanan')->nullable();
             $table->double('total_harga', 8, 2)->nullable();
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
 
             $table->foreign('meja_id')->references('id')->on('mejas')->onDelete('cascade');

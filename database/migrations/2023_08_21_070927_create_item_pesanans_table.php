@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('menu_id');
             $table->integer('total_pesanan')->nullable();
             $table->double('total_harga', 8, 2)->nullable();
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
 
             $table->foreign('pesanan_id')->references('id')->on('pesanans')->onDelete('cascade');

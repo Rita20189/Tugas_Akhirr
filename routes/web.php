@@ -11,7 +11,6 @@ use App\Http\Controllers\Backend\PenggunaController;
 use App\Http\Controllers\Backend\PesananController;
 use App\Http\Controllers\Backend\PegawaiController;
 use App\Http\Controllers\Frontend\FrontendController;
-use App\Http\Controllers\frontend\LoginOutletController;
 use App\Models\Pesanan;
 use Illuminate\Support\Facades\Route;
 
@@ -49,39 +48,39 @@ use Illuminate\Support\Facades\Route;
 //     return view('frontend.contact');
 // });
 
-Route::get('/', [FrontendController::class,'index']);
+Route::get('/', [FrontendController::class, 'index']);
 
 
-Route::get('/dashboard', [BackendController::class,'index'])->middleware('auth');
+Route::get('/dashboard', [BackendController::class, 'index'])->middleware('auth');
 
 // LOGIN ADMIN
-Route::get('/login', [AuthController::class,'index'])->name('login');
-Route::post('/login', [AuthController::class,'login']);
-Route::post('/login', [AuthController::class,'login']);
-Route::post('/logout', [AuthController::class,'logout']);
+Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout']);
 
-// LOGIN OUTLET
-Route::get('login-outlet', [LoginOutletController::class, 'index']);
-// MANAJEMEN DATA
-Route::resource('/data-meja',MejaController::class)->middleware('auth');
-Route::resource('/item-pesanan',ItemPesananController::class)->middleware('auth');
-Route::resource('/data-pesanan',PesananController::class)->middleware('auth');
-Route::resource('/data-outlet',OutletController::class)->middleware('auth');
-Route::resource('/data-kategori', KategoriController::class)->middleware('auth');
-Route::resource('/data-menu', MenuController::class)->middleware('auth');
-Route::resource('/data-pengguna', PenggunaController::class)->middleware('auth');
-Route::resource('/data-pegawai', PegawaiController::class)->middleware('auth');
+// MANAJEMEN
+Route::group(['middleware' => 'checkRole:admin'], function () {
+  Route::resource('/data-meja', MejaController::class)->middleware('auth');
+  Route::resource('/data-outlet', OutletController::class)->middleware('auth');
+  Route::resource('/data-kategori', KategoriController::class)->middleware('auth');
+  Route::resource('/data-pengguna', PenggunaController::class)->middleware('auth');
+  Route::resource('/data-pegawai', PegawaiController::class)->middleware('auth');
+});
+Route::group(['middleware' => 'checkRole:admin,outlet'], function () {
+  Route::resource('/data-menu', MenuController::class)->middleware('auth');
+  Route::resource('/data-pesanan', PesananController::class)->middleware('auth');
+  Route::resource('/item-pesanan', ItemPesananController::class)->middleware('auth');
+});
 
 
 
-
-Route::get('/get-menu-data/{id}', [FrontendController::class,'getMenuData']);
-Route::get('/get-meja', [FrontendController::class,'getPesanan']);
-Route::post('/get-pesanan', [FrontendController::class,'getMejaPesanan']);
-Route::post('/get-menu', [FrontendController::class,'getDataMenu']);
-Route::get('/get-cart/{id}', [FrontendController::class,'getDataCart']);
-Route::get('/pesan/{id}',[FrontendController::class,'pilih_outlet']);
-Route::get('/pilih_menu/{id}',[FrontendController::class,'pilih_menu']);
-Route::delete('hapus-item/{id}',[FrontendController::class,'hapus_item']);
+Route::get('/get-menu-data/{id}', [FrontendController::class, 'getMenuData']);
+Route::get('/get-meja', [FrontendController::class, 'getPesanan']);
+Route::post('/get-pesanan', [FrontendController::class, 'getMejaPesanan']);
+Route::post('/get-menu', [FrontendController::class, 'getDataMenu']);
+Route::get('/get-cart/{id}', [FrontendController::class, 'getDataCart']);
+Route::get('/pesan/{id}', [FrontendController::class, 'pilih_outlet']);
+Route::get('/pilih_menu/{id}', [FrontendController::class, 'pilih_menu']);
+Route::delete('hapus-item/{id}', [FrontendController::class, 'hapus_item']);
 // Route::get('/notifikasi/{id}',[FrontendController::class,'notifikasi']);
-

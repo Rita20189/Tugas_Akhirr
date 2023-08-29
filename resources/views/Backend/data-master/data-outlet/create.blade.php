@@ -17,7 +17,12 @@
                             @csrf
                             <div class="form-group">
                                 <label for="exampleInputUsername1">Nama Outlet</label>
-                                <input type="text" autofocus required class="form-control" name="nama_outlet" placeholder="Masukan Nama Outlet">
+                                <select class="form-control" aria-label="Default select example" name="user">
+                                    <option>Pilih Outlet</option>
+                                    @foreach($user as $user)
+                                    <option value="{{$user->id}}">{{$user->nama}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputUsername1">Pemilik Outlet</label>

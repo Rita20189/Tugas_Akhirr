@@ -9,4 +9,12 @@ class Outlet extends Model
 {
     use HasFactory;
     protected $guarded=[];
+
+    public function user() {
+        return $this->belongsTo(User::class,'user_id');
+    }
+
+    public function menu() {
+        return $this->hasOne(Menu::class);
+    }
 }

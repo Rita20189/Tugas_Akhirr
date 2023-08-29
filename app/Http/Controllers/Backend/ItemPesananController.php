@@ -67,7 +67,11 @@ class ItemPesananController extends Controller
      */
     public function edit(string $id)
     {
-        
+        $itemPesanan = ItemPesanan::findOrFail($id);
+
+        return view('backend.manajemen-pesanan.item-pesanan.edit',[
+            'itemPesanan' => $itemPesanan
+        ]);
     }
 
     /**
@@ -77,23 +81,14 @@ class ItemPesananController extends Controller
     {
         $ItemPesanan = ItemPesanan::findOrFail($id);
         $request->validate([
-            'ItemPesanan' => 'required',
-            'pesanan' => 'required',
-            'menu' => 'required',
-            'jumlah_item' => 'required',
-            'jumlah_harga' => 'required',
+            'status' => 'required',
         ]);
 
         $ItemPesanan->update([
-        'ItemPesanan' =>$request->input('ItemPesanan'),
-        'pesanan' =>$request->input('pesanan'),
-        'menu' =>$request->input('menu'),
-        'jumlah_item' =>$request->input('jumlah_item'),
-        'jumlah_harga' =>$request->input('jumlah_harga'),
-        
+            'status' => $request->input('status')
         ]);
 
-        return redirect('item-pesanan')->with('success', 'Item Pesanan berhasil ditambahkan.');
+        return redirect('data-pesanan')->with('success', 'Status berhasil diubah.');
     }
 
     /**

@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Kategori;
 use App\Models\Menu;
 use App\Models\Outlet;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MenuController extends Controller
 {
@@ -15,20 +17,18 @@ class MenuController extends Controller
      */
     public function index()
     {
-        return view(
-            'Backend.data-master.data-menu.index',
-            [
-                'menus' => Menu::get()
-            ]
-        );
-
-        {
-            $menus = Menu::all(); // Mendapatkan semua data menu dari model Menu
-    
-            return view('frontend.menu.index', compact('menus'));
-        }
-
+        $user = Auth::user();
         
+        if ($user->role === 'admin') {
+            $menu = Menu::get();
+        }elseif($user->role === 'outlet'){
+            $menu = Menu::where('outlet_id', $user->outlet->id)->get();
+        }
+        return view('Backend.data-master.data-menu.index',
+            [
+                'menus' => $menu
+            ]
+        );        
     }
 
     /**

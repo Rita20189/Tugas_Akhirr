@@ -13,13 +13,15 @@ return new class extends Migration
     {
         Schema::create('outlets', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_outlet')->nullable();
+            $table->unsignedBigInteger('user_id');
             $table->string('pemilik_outlet')->nullable();
             $table->boolean('status')->nullable();
             $table->time('jam_buka')->nullable();
             $table->time('jam_tutup')->nullable();
             $table->string('logo')->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
 
     }

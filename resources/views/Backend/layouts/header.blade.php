@@ -20,7 +20,7 @@
       <!-- bagian admin-->
       <li class="nav-item nav-profile dropdown">
         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-          <img src="{!! asset('backend/images/profile.png') !!}" alt="icon"> Admin
+          <img src="{!! asset('backend/images/profile.png') !!}" alt="icon"> {{Auth::user()->nama}}
         </a>
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
           <div cldivss="dropdown-item">

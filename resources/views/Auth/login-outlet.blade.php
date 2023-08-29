@@ -32,13 +32,13 @@
                             <div class="text-center">
                                 <h4>Silahkan login sebagai outlet</h4>
                             </div>
-                            <form class="pt-3" action="login" method="post">
+                            <form class="pt-3" action="{{url('login-proses')}}" method="post">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" name="email" placeholder="Email">
+                                    <input type="text" class="form-control form-control-lg"  name="username" placeholder="Username">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" name="password" placeholder="Password">
+                                    <input type="password" class="form-control form-control-lg" name="password" placeholder="Password">
                                 </div>
                                 <div class="mt-3">
                                     <button class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn rounded-0" type="submit" name="submit">Login</button>

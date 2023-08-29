@@ -52,7 +52,7 @@
                         @forelse($outlets as $outlet)
                         <tr>
                             <td>{{$loop->iteration}}</td>
-                            <td>{{$outlet->nama_outlet}}</td>
+                            <td>{{$outlet->user->nama}}</td>
                             <td>{{$outlet->pemilik_outlet}}</td>
                             <td>
                                 @if($outlet->status === 0)
