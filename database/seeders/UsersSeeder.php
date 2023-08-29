@@ -20,5 +20,19 @@ class UsersSeeder extends Seeder
             'role'=> 'admin',
             'password'=>Hash::make('admin'),
         ]);
+
+        User::create([
+            'nama'=>'Outlet',
+            'email'=>'outlet@gmail.com',
+            'role'=> 'outlet',
+            'password'=>Hash::make('outlet'),
+        ]);
+
+        User::create([
+            'nama'=>'Owner',
+            'email'=>'owner@gmail.com',
+            'role'=> 'owner',
+            'password'=>Hash::make('owner'),
+        ]);
     }
 }

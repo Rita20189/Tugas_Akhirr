@@ -46,6 +46,18 @@
       </div>
     </li>
     <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#data-pegawai" aria-expanded="false" aria-controls="data-pegawai">
+        <i class="icon-columns menu-icon"></i>
+        <span class="menu-title">Manajemen Pegawai</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="data-pegawai">
+        <ul class="nav flex-column sub-menu">
+         <li class="nav-item"> <a class="nav-link" href="{{url('/data-pegawai')}}">Data Pegawai</a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item">
       <a class="nav-link" href="pages/documentation/documentation.html">
         <i class="icon-paper menu-icon"></i>
         <span class="menu-title">Laporan</span>

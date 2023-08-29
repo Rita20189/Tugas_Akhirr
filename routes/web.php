@@ -9,7 +9,9 @@ use App\Http\Controllers\Backend\KategoriController;
 use App\Http\Controllers\Backend\MejaController;
 use App\Http\Controllers\Backend\PenggunaController;
 use App\Http\Controllers\Backend\PesananController;
+use App\Http\Controllers\Backend\PegawaiController;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\frontend\LoginOutletController;
 use App\Models\Pesanan;
 use Illuminate\Support\Facades\Route;
 
@@ -51,11 +53,16 @@ Route::get('/', [FrontendController::class,'index']);
 
 
 Route::get('/dashboard', [BackendController::class,'index'])->middleware('auth');
+
+// LOGIN ADMIN
 Route::get('/login', [AuthController::class,'index'])->name('login');
 Route::post('/login', [AuthController::class,'login']);
 Route::post('/login', [AuthController::class,'login']);
 Route::post('/logout', [AuthController::class,'logout']);
-// Route::get('/login', 'AuthContro')->name('login');
+
+// LOGIN OUTLET
+Route::get('login-outlet', [LoginOutletController::class, 'index']);
+// MANAJEMEN DATA
 Route::resource('/data-meja',MejaController::class)->middleware('auth');
 Route::resource('/item-pesanan',ItemPesananController::class)->middleware('auth');
 Route::resource('/data-pesanan',PesananController::class)->middleware('auth');
@@ -63,6 +70,10 @@ Route::resource('/data-outlet',OutletController::class)->middleware('auth');
 Route::resource('/data-kategori', KategoriController::class)->middleware('auth');
 Route::resource('/data-menu', MenuController::class)->middleware('auth');
 Route::resource('/data-pengguna', PenggunaController::class)->middleware('auth');
+Route::resource('/data-pegawai', PegawaiController::class)->middleware('auth');
+
+
+
 
 Route::get('/get-menu-data/{id}', [FrontendController::class,'getMenuData']);
 Route::get('/get-meja', [FrontendController::class,'getPesanan']);
